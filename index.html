@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | Scholarship Compliance System</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <main class="page">
+    <section class="login-card" aria-labelledby="page-title">
+      <div class="brand-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 5 3 19l29 14 29-14L32 5Z" fill="currentColor"/><path d="M13 25v12c11 9 27 9 38 0V25L32 34 13 25Z" fill="currentColor" opacity=".88"/><path d="M10 43c8-4 15-2 22 5 7-7 14-9 22-5v6c-8-3-15-1-22 6-7-7-14-9-22-6v-6Z" fill="#25a66f"/></svg></div>
+      <h1 id="page-title">Student Scholarship Monitoring and Academic Compliance System</h1>
+      <p class="subtitle">Sign in to your account</p>
+      <form id="login-form" novalidate>
+        <label for="email">Email Address</label>
+        <div class="input-wrap"><span class="field-icon" aria-hidden="true">✉</span><input id="email" name="email" type="email" placeholder="Enter your email address" autocomplete="username" required></div>
+        <label for="password">Password</label>
+        <div class="input-wrap"><span class="field-icon" aria-hidden="true">▣</span><input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required><button class="show-password" id="toggle-password" type="button" aria-label="Show password">◉</button></div>
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+        <button class="btn btn-primary" id="login-button" type="submit">Login</button>
+        <div class="divider"><span>OR</span></div>
+        <button class="btn btn-outline" id="signin-button" type="button">Sign In</button>
+      </form>
+      <footer class="help"><p>Need help?</p><a href="mailto:scholarship-office@example.com">Contact the Scholarship Office</a></footer>
+    </section>
+    <p class="page-note">Authorized access only · Scholarship Portal</p>
+  </main>
+  <script src="js/config.js"></script><script src="js/auth.js"></script>
+</body></html>

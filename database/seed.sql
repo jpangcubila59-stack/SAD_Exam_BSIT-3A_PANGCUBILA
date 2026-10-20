@@ -1,0 +1,5 @@
+-- OPTIONAL: after creating six Auth users and their public.profiles rows,
+-- create assignments/submissions by replacing the illustrative IDs below.
+-- Use only synthetic test data. Run as project owner in SQL Editor.
+-- The exam test cases are documented in ../docs/analysis-report.md.
+-- This file intentionally avoids fake UUIDs that would fail foreign keys.

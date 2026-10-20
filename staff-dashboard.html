@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Staff Dashboard | Scholarship Compliance System</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <main class="dashboard-shell" data-role="staff">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">Scholarship Compliance System</p>
+        <h1>Staff Dashboard</h1>
+        <p class="dashboard-subtitle" id="welcome-message">Review submissions and manage scholar assignments</p>
+      </div>
+      <button class="btn btn-outline signout-button" type="button" data-signout>Sign out</button>
+    </header>
+
+    <p id="dashboard-message" class="dashboard-message" role="status" aria-live="polite"></p>
+
+    <section class="dashboard-panel" aria-labelledby="assign-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="assign-heading">Assign a scholar</h2>
+          <p>Link an existing Supabase Auth user to a persisted scholarship program. Create Auth users in Supabase first.</p>
+        </div>
+      </div>
+      <form id="assignment-form" class="dashboard-form assignment-form">
+        <label>Scholar Auth user UID
+          <input name="scholar_id" type="text" required pattern="[0-9a-fA-F-]{36}" placeholder="UUID from Authentication → Users">
+        </label>
+        <label>Scholar email
+          <input name="email" type="email" required placeholder="scholar@example.com">
+        </label>
+        <label>Student ID
+          <input name="student_id" type="text" maxlength="80" required placeholder="Student ID">
+        </label>
+        <label>Full name
+          <input name="full_name" type="text" maxlength="160" required placeholder="Scholar name">
+        </label>
+        <label>Scholarship program
+          <select name="program_id" id="program-select" required>
+            <option value="">Loading programs...</option>
+          </select>
+        </label>
+        <button class="btn btn-primary form-action" type="submit">Save assignment</button>
+      </form>
+    </section>
+
+    <section class="dashboard-panel" aria-labelledby="overview-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="overview-heading">Semester overview</h2>
+          <p>Counts reflect the selected semester; assigned scholars includes all current assignments.</p>
+        </div>
+        <div class="semester-picker">
+          <label>Academic year
+            <input id="filter-year" type="text" maxlength="20" value="2026-2027">
+          </label>
+          <label>Semester
+            <select id="filter-semester">
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Summer</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="metric-grid">
+        <article class="metric-card"><span>Total assigned scholars</span><strong id="metric-assigned">—</strong></article>
+        <article class="metric-card"><span>Pending verification</span><strong id="metric-pending">—</strong></article>
+        <article class="metric-card"><span>Compliant</span><strong id="metric-compliant">—</strong></article>
+        <article class="metric-card"><span>With deficiency</span><strong id="metric-deficiency">—</strong></article>
+      </div>
+    </section>
+
+    <section class="dashboard-panel" aria-labelledby="records-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="records-heading">Submissions</h2>
+          <p>Verify evidence before evaluating compliance; renewal decisions require an evaluation.</p>
+        </div>
+        <button class="btn btn-outline compact-button" type="button" data-refresh>Refresh</button>
+      </div>
+      <div class="filter-bar">
+        <label>Search name or student ID
+          <input id="search-records" type="search" placeholder="Search scholars">
+        </label>
+        <label>Program
+          <select id="filter-program"><option value="">All programs</option></select>
+        </label>
+        <label>Compliance
+          <select id="filter-compliance">
+            <option value="">All results</option>
+            <option value="pending">Not evaluated</option>
+            <option value="compliant">Compliant</option>
+            <option value="with_deficiency">With deficiency</option>
+          </select>
+        </label>
+      </div>
+      <div id="staff-submissions" class="submission-list" aria-live="polite"></div>
+    </section>
+
+    <section class="dashboard-panel" aria-labelledby="history-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="history-heading">Recent activity</h2>
+          <p>Verification, evaluation, renewal, and submission changes with actor and timestamp.</p>
+        </div>
+      </div>
+      <div id="submission-history" class="history-list" aria-live="polite"></div>
+    </section>
+  </main>
+  <script src="js/config.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

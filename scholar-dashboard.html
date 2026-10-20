@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scholar Dashboard | Scholarship Compliance System</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <main class="dashboard-shell" data-role="scholar">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">Scholarship Compliance System</p>
+        <h1>Scholar Dashboard</h1>
+        <p class="dashboard-subtitle" id="welcome-message">Your submissions and scholarship status</p>
+      </div>
+      <button class="btn btn-outline signout-button" type="button" data-signout>Sign out</button>
+    </header>
+
+    <p id="dashboard-message" class="dashboard-message" role="status" aria-live="polite"></p>
+
+    <section class="dashboard-panel" aria-labelledby="submit-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="submit-heading">Submit semester grades</h2>
+          <p>Enter the academic summary from your grade document. Use a document reference; do not upload official records here.</p>
+        </div>
+      </div>
+      <form id="submission-form" class="dashboard-form">
+        <label>Scholarship program
+          <input id="scholar-program" type="text" readonly placeholder="Loading assignment...">
+        </label>
+        <label>Academic year
+          <input name="academic_year" type="text" required maxlength="20" value="2026-2027" placeholder="2026-2027">
+        </label>
+        <label>Semester
+          <select name="semester" required>
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Summer</option>
+          </select>
+        </label>
+        <label>GWA (1.00–5.00)
+          <input name="gwa" type="number" min="1" max="5" step="0.01" required placeholder="1.75">
+        </label>
+        <label>Enrolled units
+          <input name="enrolled_units" type="number" min="0" step="1" required placeholder="18">
+        </label>
+        <label>Failed subjects
+          <input name="failed_count" type="number" min="0" step="1" value="0" required>
+        </label>
+        <label>Incomplete grades
+          <input name="incomplete_count" type="number" min="0" step="1" value="0" required>
+        </label>
+        <label>Dropped subjects
+          <input name="dropped_count" type="number" min="0" step="1" value="0" required>
+        </label>
+        <label class="form-wide">Grade document reference
+          <input name="evidence_reference" type="text" maxlength="500" required placeholder="Reference or secure document link">
+        </label>
+        <p class="form-hint form-wide">Submissions are timestamped and locked after submission unless staff return them for correction. Duplicate semester submissions are not allowed.</p>
+        <button class="btn btn-primary form-action" type="submit">Submit grades</button>
+      </form>
+    </section>
+
+    <section class="dashboard-panel" aria-labelledby="my-submissions-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="my-submissions-heading">My semester submissions</h2>
+        <p>Verification, academic compliance, renewal, and award status are tracked separately.</p>
+        </div>
+        <button class="btn btn-outline compact-button" type="button" data-refresh>Refresh</button>
+      </div>
+      <div id="scholar-submissions" class="submission-list" aria-live="polite"></div>
+    </section>
+  </main>
+  <script src="js/config.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
